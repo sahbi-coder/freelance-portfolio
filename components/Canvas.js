@@ -329,7 +329,7 @@ export default function Canvas() {
                 {" "}
               </span>
               <span className={styles.char} ref={setRefts}>
-                '
+                 &apos;
               </span>
               <span> </span>
               <span className={styles.char} ref={setRefts}>

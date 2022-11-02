@@ -73,9 +73,9 @@ function About() {
               À propos de moi
             </div>
             <div ref={blockRef}>
-              Électricien professionnel avec plus de trois ans d'expérience
+              Électricien professionnel avec plus de trois ans d&apos;expérience
               pratique, sur des sites domestiques et industriels, toujours prêt
-              à résoudre n'importe quel problème.
+              à résoudre n&apos;importe quel problème.
             </div>
             <Link href="/contact">
               <div className={styles.contact} ref={contactRef}>
