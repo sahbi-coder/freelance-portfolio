@@ -108,6 +108,7 @@ export default function Navbar() {
                 <a
                   href="https://www.facebook.com/profile.php?id=100082503682007&sk=photos"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <FacebookIcon className={styles.socialIcon} />
                 </a>
@@ -116,6 +117,7 @@ export default function Navbar() {
                 <a
                   href="https://www.facebook.com/oussama.jedda"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <FacebookIcon className={styles.socialIcon} />
                 </a>
