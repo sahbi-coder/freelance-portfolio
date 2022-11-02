@@ -1,0 +1,94 @@
+.navbar {
+  background-color: #1c1c1c;
+  width: 15vw;
+  color: #909096;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+}
+.navWrap{
+    width: 100%;
+    position: relative;
+}
+.toggleContainer{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: transparent;
+    z-index: 1111;
+    
+}
+.toggleBars{
+    position: absolute;
+    left: 10px;
+    top:10px;
+    cursor: pointer;
+    color: white;
+    visibility: hidden;
+
+}
+.clear{
+    position: absolute;
+    left: 10px;
+    top:10px;
+    cursor: pointer;
+    color: white;
+    visibility: hidden;
+
+}
+.nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.link {
+  text-align: center;
+  width: 100%;
+  color: #aaaab3;
+  display: block;
+  font-size: 1.6rem;
+  line-height: 5rem;
+
+  border-bottom: 1px solid white;
+}
+.link:hover {
+  color: aliceblue;
+
+  transform: scale(1.1);
+}
+.logo {
+  color: #08fdd8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: larger;
+}
+.socialIcon {
+  cursor: pointer;
+}
+.socialIcon:hover {
+  color: #08fdd8;
+}
+
+@media  only screen and (max-width: 768px) {
+  .navbar {
+    width:100%;
+    z-index: 1000;
+    
+  }
+  .clear,.toggleBars{
+    visibility: visible;
+  }
+  
+}
