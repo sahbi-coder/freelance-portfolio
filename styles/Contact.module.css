@@ -110,6 +110,14 @@
 
   
 }
+.phone{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size:1rem;
+  color:#08fdd8;
+}
 
 @media screen and (max-width: 768px) {
   .container {

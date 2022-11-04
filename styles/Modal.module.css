@@ -38,3 +38,8 @@
   font-size: 1.7rem;
   cursor: pointer;
 }
+@media screen and (max-width:768px) {
+  .modalBody{
+    height: 60% !important;
+  }
+}

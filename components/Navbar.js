@@ -123,6 +123,17 @@ export default function Navbar() {
                 </a>
               </span>
             </div>
+            <div style={{marginTop:10}}>
+              developed by:{" "}
+              <a
+                href="https://sahbi-coder.github.io/portfolio/"
+                target="_blank"
+                rel="noreferrer"
+                style={{color:'white'}}
+              >
+                sahbi kardi
+              </a>
+            </div>
           </div>
           <LanguagesBox />
         </header>

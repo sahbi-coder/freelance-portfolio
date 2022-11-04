@@ -38,9 +38,9 @@ function About() {
               Who am I?
             </div>
             <div ref={blockRef}>
-              Professional electrician with over three years of hands on
-              experience, in both domestic and industrial sites, always ready to
-              tackle any problem.
+              oussama jedda, Professional electrician with <br/>over three years of
+              hands on experience, in both domestic and industrial sites, always
+              ready to tackle any problem.
             </div>
             <Link href="/contact">
               <div className={styles.contact} ref={contactRef}>
@@ -73,13 +73,14 @@ function About() {
               À propos de moi
             </div>
             <div ref={blockRef}>
-              Électricien professionnel avec plus de trois ans d&apos;expérience
-              pratique, sur des sites domestiques et industriels, toujours prêt
-              à résoudre n&apos;importe quel problème.
+              Jedda Oussama, Électricien professionnel avec plus de trois ans
+              d&apos;expérience pratique, sur des sites domestiques et
+              industriels, toujours prêt à résoudre n&apos;importe quel
+              problème.
             </div>
             <Link href="/contact">
               <div className={styles.contact} ref={contactRef}>
-              Contactez moi.
+                Contactez moi.
               </div>
             </Link>
           </div>

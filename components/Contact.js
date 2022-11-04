@@ -4,6 +4,7 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { useAppContext } from "../context/state";
+import PhoneIcon from '@mui/icons-material/Phone';
 import emailjs from "@emailjs/browser";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -114,6 +115,7 @@ function Contact() {
             </>
           )}
         </div>
+        <div className={styles.phone}><PhoneIcon/>:<span style={{color:'white',marginLeft:10}}>  92 999 589</span></div>
         {state.language === ACTIONS.FR && (
           <form className={styles.form} ref={formRef}>
             <div className={styles.row}>
