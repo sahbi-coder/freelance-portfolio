@@ -4,7 +4,7 @@ import { gsap } from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import { useAppContext } from "../context/state";
-import PhoneIcon from '@mui/icons-material/Phone';
+import PhoneIcon from "@mui/icons-material/Phone";
 import emailjs from "@emailjs/browser";
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,7 +29,12 @@ function Contact() {
           setIsFetching(false);
         },
         (error) => {
-          console.log(error)
+          console.log(
+            error,
+            process.env.NEXT_PUBLIC_SERVICE_ID,
+            NEXT_PUBLIC_TEMPLATE_ID,
+            NEXT_PUBLIC_PUBLIC_KEY
+          );
           setDone(false);
           setError(true);
           setIsFetching(false);
@@ -116,7 +121,10 @@ function Contact() {
             </>
           )}
         </div>
-        <div className={styles.phone}><PhoneIcon/>:<span style={{color:'white',marginLeft:10}}>  92 999 589</span></div>
+        <div className={styles.phone}>
+          <PhoneIcon />:
+          <span style={{ color: "white", marginLeft: 10 }}> 92 999 589</span>
+        </div>
         {state.language === ACTIONS.FR && (
           <form className={styles.form} ref={formRef}>
             <div className={styles.row}>
