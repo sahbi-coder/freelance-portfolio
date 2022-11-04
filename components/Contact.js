@@ -29,6 +29,7 @@ function Contact() {
           setIsFetching(false);
         },
         (error) => {
+          console.log(error)
           setDone(false);
           setError(true);
           setIsFetching(false);
