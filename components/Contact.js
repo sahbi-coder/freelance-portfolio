@@ -123,7 +123,7 @@ function Contact() {
         </div>
         <div className={styles.phone}>
           <PhoneIcon />:
-          <span style={{ color: "white", marginLeft: 10 }}> 92 999 589</span>
+          <span style={{  marginLeft: 10 }}> 92 999 589</span>
         </div>
         {state.language === ACTIONS.FR && (
           <form className={styles.form} ref={formRef}>
