@@ -3,7 +3,7 @@
   width: 100%;
   align-items: center;
   height: 100vh;
-  /* margin-top: 10px; */
+
 
 }
 
@@ -121,6 +121,9 @@
     background-position: center;
     position: relative;
   }
+  .title{
+    font-size: 2rem;
+  }
   .right {
     width: 100% !important;
     height: 90vh !important;
@@ -148,3 +151,11 @@
     border: 1px solid white;
   }
 }
+@media screen and (max-width: 375px) {
+
+  .title{
+    font-size: 1.5rem;
+
+    
+  }
+  }

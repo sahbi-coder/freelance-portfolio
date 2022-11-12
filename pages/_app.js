@@ -21,7 +21,7 @@ function MyApp({ Component, pageProps }) {
     setTime(true)
     setTimeout(() => {
       setTime(timeOut=>false);
-    }, 3000);
+    }, 1500);
     setIsLoading(false)
   });
 
