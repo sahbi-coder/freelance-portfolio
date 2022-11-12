@@ -5,13 +5,11 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-import  { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import Link from "next/link";
 
 export default function BasicSelect({ t }) {
-  const {pathname} = useRouter()
-
-
+  const { pathname } = useRouter();
 
   return (
     <Box
@@ -28,24 +26,12 @@ export default function BasicSelect({ t }) {
         </InputLabel>
 
         <Select>
-          <Link
-            href={
-        
-            
-              pathname
-            }
-            locale='en'
-          >
+          <Link href={pathname} locale="en">
             <MenuItem value="/en" name="en">
               {t("navbar:english")}
             </MenuItem>
           </Link>
-          <Link
-            href={
-              pathname
-            }
-            locale='fr'
-          >
+          <Link href={pathname} locale="fr">
             <MenuItem value="/fr" name="fr">
               {t("navbar:french")}
             </MenuItem>

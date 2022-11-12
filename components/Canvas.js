@@ -6,7 +6,7 @@ import uniqid from 'uniqid';
 
 
 
-// let intro = "Hi, I ' am Oussama, Professional Electritian.";
+
 export default function Canvas({t}) {
   const isMobile = useMobile();
   const lettersRef = useRef([]);

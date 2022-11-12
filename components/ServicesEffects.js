@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import * as THREE from "three";
 import useMobile from "../hooks/useMobile";
+import {useRouter} from 'next/router'
 
 function ServicesEffects() {
   const isMobile = useMobile();
-
+  const {locale} = useRouter()
+  
   useEffect(() => {
     let canvas = document.getElementById("bg");
     let req, loopReq;
@@ -43,10 +45,10 @@ function ServicesEffects() {
           };
         }
 
-        const circleOne = makePlate(5, 0, "Frame 1.svg");
-        const circleTwo = makePlate(0, 5, "Frame 2.svg");
-        const circleThree = makePlate(-5, 0, "Frame 3.svg");
-        const circleFour = makePlate(0, -5, "Frame 4.svg");
+        const circleOne = makePlate(5, 0, `/${locale}/Frame 1.svg`);
+        const circleTwo = makePlate(0, 5, `/${locale}/Frame 2.svg`);
+        const circleThree = makePlate(-5, 0, `/${locale}/Frame 3.svg`);
+        const circleFour = makePlate(0, -5, `/${locale}/Frame 4.svg`);
 
         function loop() {
           try {

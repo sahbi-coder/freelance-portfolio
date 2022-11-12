@@ -65,7 +65,7 @@ function Services({ t }) {
             </Link>
           </div>
           <div className={styles.right}>
-            <ServicesEffects />
+            <ServicesEffects/>
             <img
               src={isMobile ? "wave-haikei2.svg" : "wave-haikei.svg"}
               loading="lazy"
