@@ -1,13 +1,13 @@
 import React from "react";
 import { useState, forwardRef, useImperativeHandle, useEffect } from "react";
 import styles from "../styles/Modal.module.css";
-import { useAppContext } from "../context/state";
+
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import { NavigateBefore } from "@mui/icons-material";
 function Modal(props, ref) {
   const [isOpen, setIsOpen] = useState(false);
   const [imgSrc, setImgSrc] = useState("");
-  const { state, ACTIONS } = useAppContext();
+
   const [currentIndex, setCurrentIndex] = useState(0);
  
   const getNextImage = () => {
@@ -48,8 +48,8 @@ function Modal(props, ref) {
         }}
         className={styles.modalButton}
       >
-        {state.language === ACTIONS.EN && "close"}
-        {state.language === ACTIONS.FR && "fermer"}
+        {props.t('modal:close')}
+      
       </button>
     </div>
   ) : null;

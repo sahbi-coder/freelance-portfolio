@@ -25,10 +25,15 @@
   margin-bottom: 20px;
 }
 .contact {
-  color: #08fdd8;
+  background-color: #08fdd8;
   cursor: pointer;
   margin-top: 20px;
-  size: 1rem;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  padding: 10px;
+  font-weight: bold;
+
 }
 .right{
     width: 50%;

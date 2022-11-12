@@ -2,9 +2,18 @@ import React from "react";
 import Services from "../components/Services";
 import Layout from "../components/Layout";
 import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
-function services() {
-
+export async function getStaticProps({locale}){
+  return {
+    props:{
+      ...(await serverSideTranslations(locale,['common','services','navbar']))
+    }
+  }
+}
+function Servicess() {
+  const {t} = useTranslation()
   return (
     <>
       <Head>
@@ -14,11 +23,11 @@ function services() {
         <title>oussama jedda | services</title>
       </Head>
 
-      <Layout>
-        <Services />
+      <Layout t={t}>
+        <Services t={t}/>
       </Layout>
     </>
   );
 }
 
-export default services;
+export default Servicess;

@@ -2,9 +2,18 @@ import React from "react";
 import Work from "../components/Work";
 import Layout from "../components/Layout";
 import Head from "next/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
 
-function work() {
- 
+export async function getStaticProps({locale}){
+  return {
+    props:{
+      ...(await serverSideTranslations(locale,['common','work','navbar']))
+    }
+  }
+}
+function Workk() {
+ const {t}=useTranslation()
   return (
     <>
       <Head>
@@ -14,11 +23,11 @@ function work() {
         <title>oussama jedda | work</title>
       </Head>
 
-      <Layout>
-        <Work />
+      <Layout t={t}>
+        <Work t={t}/>
       </Layout>
     </>
   );
 }
 
-export default work;
+export default Workk;

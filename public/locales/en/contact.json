@@ -1,0 +1,24 @@
+{
+
+"contact":"CONTACT ME",
+"send":"send message !",
+"success-message":"thank you..",   
+"failure-message":"oops ! something went wrong...",
+"catch":"Always ready for your projects, feel free to contact me, now.",
+"photo-alt":"photo just for layout",
+"name_placeholder":"name",
+
+"lastname_placeholder":"last name",
+
+"email_placeholder":"your email",
+
+"message_placeholder":"message",
+
+"name-error-message":"name must be 15 characters or less",
+"lastName-error-message":"last name must be 20 characters or less",
+"email-error-message":"must be a valid email",
+"message-error-message":"must be less than 5000 characters",
+"required":"required",
+"email-length":"email must be 30 characteres or less"
+
+}

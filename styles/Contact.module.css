@@ -1,16 +1,14 @@
 .container {
-  
   display: flex;
   width: 100%;
   align-items: center;
   height: 100vh;
-  margin-top: 10px;
- 
-  
-  
+  /* margin-top: 10px; */
+
 }
+
 .left {
-  width: 40%;
+  width: 45%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,9 +17,8 @@
   padding: 40px;
   color: white;
   font-size: 1.4rem;
-  
-  
 }
+
 .title {
   font-size: 3rem;
   color: #08fdd8;
@@ -30,41 +27,36 @@
 
 .right {
   position: relative;
-  width: 60%;
+  width: 55%;
   height: 100vh;
   overflow: hidden;
   background-color: #08fdd8;
-  padding: 20px;
-
-
-  
 }
-.catch{
+
+.catch {
   position: absolute;
   top: 30%;
   right: 10%;
-  
   width: 50%;
   padding: 10px;
-
   font-size: 2.5rem;
   color: #1c1c1c;
-
-  
- 
 }
 
 .form {
   display: flex;
+  padding:10px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
   width: 30vw;
   z-index: 999;
 }
+
 .input {
   width: 100%;
   min-width: 100%;
+  max-width: 100%;
   margin-bottom: 5px;
   height: 50px;
   min-height: 50px;
@@ -74,56 +66,48 @@
   padding: 3px;
   border: 1px solid #08fdd8;
 }
+
 .column {
   width: 49%;
 }
+.twoColumns {
+  width: 100%;
+}
+
 .row {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  margin-bottom:5px;
 }
-.overlay {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  bottom: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent,
-    transparent,
-    transparent,
-    transparent,
-    transparent,
-    transparent,
-    #08fdd8
-  );
-  visibility: hidden;
-}
-.curves{
-  
+
+
+.curves {
   position: absolute;
   height: 100%;
   top: 0;
   left: 0;
-
-
-  
 }
-.phone{
+.phone {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 10px;
-  font-size:1rem;
-  color:#08fdd8;
+  font-size: 1rem;
+  color: #08fdd8;
 }
-
+.error{
+  color:red;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
 @media screen and (max-width: 768px) {
   .container {
     display: flex;
-    flex-direction: column !important;
-    
+    flex-direction:column !important;
+    height: auto;
   }
   .left {
     width: 100% !important;
@@ -139,16 +123,16 @@
   }
   .right {
     width: 100% !important;
-    height: 100vh !important;
-    display: none;
-  
+    height: 90vh !important;
+    
   }
-  .form{
+  .form {
     width: 70vw;
   }
   .row {
     flex-direction: column !important;
     align-items: flex-start;
+    
   }
   .column {
     width: 100%;
@@ -156,15 +140,11 @@
   .input {
     background-color: transparent;
   }
-  .overlay {
-    visibility: visible;
-  }
+
   .input {
     border: 1px solid #08fdd8;
   }
   .input:focus {
     border: 1px solid white;
   }
-
-
 }

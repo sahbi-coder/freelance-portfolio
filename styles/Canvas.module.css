@@ -12,21 +12,20 @@
   font-weight: bold;
   user-select: none;
 }
-.char:hover {
-  color: #08fdd8;
-  position: relative;
-  top: -5px;
-
+@media screen and (min-width: 769px) {
+  .char:hover {
+    color: #08fdd8;
+    position: relative;
+    top: -5px;
+  }
 }
 @media screen and (max-width: 768px) {
   .textArea {
     font-size: 3.5rem !important;
   }
-
 }
 @media screen and (max-width: 400px) {
   .textArea {
     font-size: 2.5rem !important;
   }
- 
 }

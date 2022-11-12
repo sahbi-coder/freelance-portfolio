@@ -1,0 +1,22 @@
+{
+"contact":"CONTACTEZ MOI",
+"message":"envoyer message !",
+"success-message":"merci...",   
+"failure-message":"oops ! un problème est survenu, réessayez...",
+"catch":"Toujours prêt pour vos projets, n'hésitez pas à me contacter.",
+"name_placeholder":"prenom",
+
+"lastname_placeholder":"nom",
+
+"photo-alt":"photo pour le design",
+"email_placeholder":"votre email",
+
+"message_placeholder":"message",
+
+"name-error-message":"prenom doit etre composé de 15 caractères ou moins",
+"lastName-error-message":"nom doit etre composé de 15 caractères ou moins",
+"email-error-message":"email doit être valide",
+"message-error-message":"message doit être 5000 caractère ou moin",
+"required":"obligatoire",
+"email-length":"email doit être 30 caractère ou moin"
+}

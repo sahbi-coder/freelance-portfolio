@@ -11,7 +11,7 @@ import useMobile from "../hooks/useMobile";
 import Router from "next/router";
 import LanguagesBox from "./LanguagesBox";
 
-export default function Navbar() {
+export default function Navbar({t}) {
   const links = useRef([]);
   const [isShown, setIsShown] = useState(false);
   const isMobile = useMobile();
@@ -62,7 +62,7 @@ export default function Navbar() {
               <Link href={"/"}>
                 <Image src={logo} height={80} width="100%" />
               </Link>
-              <span>Electritian</span>
+              <span>{t('navbar:electritian')}</span>
             </div>
             <div className={styles.navWrap}>
               <nav>
@@ -90,7 +90,7 @@ export default function Navbar() {
                       addLink(el);
                     }}
                   >
-                    <Link href={"/work"}>Work</Link>
+                    <Link href={"/work"}>{t('navbar:work')}</Link>
                   </li>
                   <li
                     className={styles.link}
@@ -104,7 +104,7 @@ export default function Navbar() {
               </nav>
             </div>
             <div>
-              <span title="facebook page">
+              <span title={t('navbar:facebook-page')}>
                 <a
                   href="https://www.facebook.com/profile.php?id=100082503682007&sk=photos"
                   target="_blank"
@@ -113,7 +113,7 @@ export default function Navbar() {
                   <FacebookIcon className={styles.socialIcon} />
                 </a>
               </span>
-              <span title="personal facebook">
+              <span title={t('navbar:personal-facebook')}>
                 <a
                   href="https://www.facebook.com/oussama.jedda"
                   target="_blank"
@@ -123,19 +123,19 @@ export default function Navbar() {
                 </a>
               </span>
             </div>
-            <div style={{marginTop:10}}>
-              developed by:{" "}
+            <div style={{marginTop:10,display:'flex',alignItems:'center',flexDirection:'column'}}>
+            <span>{t('navbar:developed-by')}</span>
               <a
                 href="https://sahbi-coder.github.io/portfolio/"
                 target="_blank"
                 rel="noreferrer"
-                style={{color:'white'}}
+                style={{color:'white',margin:3}}
               >
-                sahbi kardi
+                Sahbi Kardi
               </a>
             </div>
           </div>
-          <LanguagesBox />
+          <LanguagesBox t={t} />
         </header>
       )}
     </>

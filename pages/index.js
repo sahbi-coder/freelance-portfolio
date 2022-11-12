@@ -6,9 +6,20 @@ import Services from "../components/Services";
 import About from "../components/About";
 import Work from "../components/Work";
 import Contact from "../components/Contact";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+
+export async function getStaticProps({locale}){
+  return {
+    props:{
+      ...(await serverSideTranslations(locale,['common','canvas','about','services','work','contact','navbar']))
+    }
+  }
+}
+
 
 export default function Home() {
-
+  const {t}=useTranslation()
   return (
     <>
       <Head>
@@ -18,15 +29,15 @@ export default function Home() {
         <title>oussama jedda</title>
       </Head>
 
-      <Layout>
+      <Layout t={t}>
         <main>
-          <Canvas />
-          <About />
-          <Services />
-          <Work />
+          <Canvas t={t}/>
+          <About t={t}/>
+          <Services t={t}/>
+          <Work t={t}/>
         </main>
         <footer>
-          <Contact />
+          <Contact t={t}/>
         </footer>
       </Layout>
     </>

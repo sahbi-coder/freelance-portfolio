@@ -1,14 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef,useId } from "react";
 import styles from "../styles/Canvas.module.css";
 import useMobile from "../hooks/useMobile";
 import { gsap } from "gsap";
-import { useAppContext } from "../context/state";
+import uniqid from 'uniqid';
 
-export default function Canvas() {
+
+
+// let intro = "Hi, I ' am Oussama, Professional Electritian.";
+export default function Canvas({t}) {
   const isMobile = useMobile();
   const lettersRef = useRef([]);
-  const { state, dispatch, ACTIONS } = useAppContext();
-  
 
   lettersRef.current = [];
   const setRefts = (el) => {
@@ -280,300 +281,54 @@ export default function Canvas() {
       copy: "Jedda",
       size: isMobile ? 70 : 100,
     });
-    
-    function resize(){
+
+    function resize() {
       canvas.height = this.window.innerHeight;
       canvas.width = this.window.innerWidth;
       w = canvas.width;
       h = canvas.height;
     }
-    window.addEventListener("resize",resize);
+    window.addEventListener("resize", resize);
     loop();
-    return ()=>{
-      window.removeEventListener("resize",resize)
-      window.cancelAnimationFrame(req)
-    }
-
+    return () => {
+      window.removeEventListener("resize", resize);
+      window.cancelAnimationFrame(req);
+    };
   }, []);
 
   useEffect(() => {
     lettersRef.current.forEach((ref, index) => {
       gsap.fromTo(ref, { opacity: 0 }, { opacity: 1, duration: index * 0.1 });
     });
-  }, [state]);
+  }, []);
   return (
     <>
-        <div className={styles.canvasWrapper}>
-          <canvas
-            id="canvas"
-            style={{ height: "100vh", width: "100vw" }}
-            ></canvas>
-            {state.language === ACTIONS.EN && (
-          <div className={styles.textArea}>
-            <div>
-              <span className={styles.char} ref={setRefts}>
-                H
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                i
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                ,
-              </span>
-            </div>
-            <div>
-              <span className={styles.char} ref={setRefts}>
-                I
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                {" "}
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                 &apos;
-              </span>
-              <span> </span>
-              <span className={styles.char} ref={setRefts}>
-                a
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                m
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                {" "}
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                O
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                u
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                s
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                s
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                a
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                m
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                a
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                ,
-              </span>
-            </div>
-            <div>
-              <span className={styles.char} ref={setRefts}>
-                P
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                r
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                o
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                f
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                e
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                s
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                s
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                i
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                o
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                n
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                a
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                l
-              </span>
-              <span> </span>
-              <span className={styles.char} ref={setRefts}>
-                E
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                l
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                e
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                c
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                t
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                r
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                i
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                t
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                i
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                a
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                n
-              </span>
-              <span className={styles.char} ref={setRefts}>
-                .
-              </span>
-            </div>
+      <div className={styles.canvasWrapper}>
+        <canvas
+          id="canvas"
+          style={{ height: "100vh", width: "100vw" }}
+        ></canvas>
+
+        <div className={styles.textArea}>
+          <div>
+            {t("canvas:canvas").split("").map((c, index) => {
+         
+              return c === "," ? (
+                <>
+                  <span className={styles.char} ref={setRefts} key={uniqid()}>
+                    {c}
+                  </span>
+                  <br />
+                </>
+              ) : (
+                <span className={styles.char} ref={setRefts} key={index}>
+                  {c}
+                </span>
+              );
+            })}
           </div>
-            )}
-            {state.language === ACTIONS.FR && (
-       
-       
-       <div className={styles.textArea}>
-         <div>
-           <span className={styles.char} ref={setRefts}>
-             J
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             e
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             d
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             d
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             a
-           </span>
-           <span> </span>
-           <span className={styles.char} ref={setRefts}>
-             O
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             u
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             s
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             s
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             a
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             m
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             a
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             ,
-           </span>
-         </div>
-         <div>
-           <span className={styles.char} ref={setRefts}>
-              É
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             l
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             e
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             c
-           </span>
-          
-           <span className={styles.char} ref={setRefts}>
-             t
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             r
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             i
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             c
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             i
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             e
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             n
-           </span>
-           <span className={styles.char} ref={setRefts}></span>
-           <span> </span>
-           <span className={styles.char} ref={setRefts}>
-             P
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             r
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             o
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             f
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             e
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             s
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             s
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             i
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             o
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             n
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             n
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             e
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             l
-           </span>
-           <span className={styles.char} ref={setRefts}>
-             .
-           </span>
-         </div>
-       </div>
-     
-   )}
         </div>
-      
-     </> 
+      </div>
+    </>
   );
 }

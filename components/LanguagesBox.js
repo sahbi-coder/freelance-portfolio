@@ -4,35 +4,52 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import { useAppContext } from "../context/state";
 
-export default function BasicSelect() {
-  const { state, dispatch, ACTIONS } = useAppContext();
+import  { useRouter } from "next/router";
+import Link from "next/link";
 
-  const handleChange = (event) => {
+export default function BasicSelect({ t }) {
+  const {pathname} = useRouter()
 
-    dispatch({ type: event.target.value });
-  };
+
 
   return (
-    <Box sx={{ minWidth: 120, marginTop: 5,backgroundColor:'white',borderRadius:3 }}>
+    <Box
+      sx={{
+        minWidth: 120,
+        marginTop: 2,
+        backgroundColor: "white",
+        borderRadius: 3,
+      }}
+    >
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Language:</InputLabel>
-        <Select onChange={handleChange}>
-          {state.language === ACTIONS.EN && (
+        <InputLabel id="demo-simple-select-label">
+          {t("navbar:language")}
+        </InputLabel>
+
+        <Select>
+          <Link
+            href={
         
-            <MenuItem value={ACTIONS.EN}>english</MenuItem>
-           
-          )}
-          {state.language === ACTIONS.EN && (
-            <MenuItem value={ACTIONS.FR}>french</MenuItem>
-          )}
-          {state.language === ACTIONS.FR && (
-            <MenuItem value={ACTIONS.EN}>anglais</MenuItem>
-          )}
-          {state.language === ACTIONS.FR && (
-            <MenuItem value={ACTIONS.FR}>Français</MenuItem>
-          )}
+            
+              pathname
+            }
+            locale='en'
+          >
+            <MenuItem value="/en" name="en">
+              {t("navbar:english")}
+            </MenuItem>
+          </Link>
+          <Link
+            href={
+              pathname
+            }
+            locale='fr'
+          >
+            <MenuItem value="/fr" name="fr">
+              {t("navbar:french")}
+            </MenuItem>
+          </Link>
         </Select>
       </FormControl>
     </Box>

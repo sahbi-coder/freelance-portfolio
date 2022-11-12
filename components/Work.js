@@ -1,22 +1,20 @@
 import useMobile from "../hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/Work.module.css";
-
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import Flip from "gsap/dist/Flip";
-import { useAppContext } from "../context/state";
 import Modal from "../components/Modal";
+
+
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
 
-export default function Work() {
+export default function Work({t}) {
   const isMobile = useMobile();
-
   const gridRef = useRef(null);
   const gridItemsRefs = useRef([]);
   const modalRef = useRef(null);
-  const { state, ACTIONS } = useAppContext();
   const [scrambledImages, setScrambledImages] = useState(itemData);
 
   const setRefs = (el, index) => {
@@ -34,7 +32,8 @@ export default function Work() {
     const t = gsap.timeline({
       scrollTrigger: {
         trigger: gridRef.current,
-        start: "40% center",
+        start: isMobile?'top center':"20% center" 
+  
       },
     });
     gridItemsRefs.current.forEach((ref, index) => {
@@ -43,11 +42,11 @@ export default function Work() {
         opacity: 1,
       });
     });
-  }, [state, isMobile]);
+  }, [isMobile]);
 
   return (
     <>
-      <Modal ref={modalRef} scrambledImages={scrambledImages}/>
+      <Modal ref={modalRef} scrambledImages={scrambledImages} t={t}/>
       <div className={styles.gridsContainer}>
         <div className={styles.grid} ref={gridRef}>
           {scrambledImages.map((item, index) => (
@@ -57,23 +56,21 @@ export default function Work() {
               ref={(el) => setRefs(el, index)}
             >
               <div className={styles.gridItemButtonWrapper}>
-                <div
+                <button
                   className={styles.gridItemButton}
                   onClick={() => {
                     openModal(item.img);
                   }}
                 >
-                  {state.language === ACTIONS.EN && "view project"}
-                  {state.language === ACTIONS.FR && "voir travaille"}
-                </div>
+                   {t('work:see-work')}
+                </button>
               </div>
               <img
                 src={`${item.img}?w=164&h=164&fit=crop&auto=format`}
                 srcSet={`${item.img}?w=164&h=164&fit=crop&auto=format&dpr=2 2x`}
-             
                 loading="lazy"
                 style={{ objectFit: "cover", height: "100%", width: "100%" }}
-                alt ={`${state.language===ACTIONS.EN?'example photo':'exemple image'}`}
+                alt={t('work:example-alt')}
               />
             </div>
           ))}
@@ -117,48 +114,48 @@ const itemData = [
     img: "/images/img8.jpg",
     title: "Mushrooms",
   },
-    {
-      img: "/images/img9.jpg",
-      title: "Tomato basil",
-    },
-    {
-      img: "/images/img10.jpg",
-      title: "Breakfast",
-    },
-    {
-      img: "/images/img11.jpg",
-      title: "Burger",
-    },
-    {
-      img: "/images/img12.jpg",
-      title: "Camera",
-    },
-    {
-      img: "/images/img13.jpg",
-      title: "Coffee",
-    },
-    {
-      img: "/images/img14.jpg",
-      title: "Hats",
-    },
-    {
-      img: "/images/img15.jpg",
-      title: "Honey",
-    },
-    {
-      img: "/images/img16.jpg",
-      title: "Basketball",
-    },
-    {
-      img: "/images/img17.jpg",
-      title: "Fern",
-    },
-    {
-      img: "/images/img18.jpg",
-      title: "Mushrooms",
-    },
-    {
-      img: "/images/img9.jpg",
-      title: "Tomato basil",
-    },
+  {
+    img: "/images/img9.jpg",
+    title: "Tomato basil",
+  },
+  {
+    img: "/images/img10.jpg",
+    title: "Breakfast",
+  },
+  {
+    img: "/images/img11.jpg",
+    title: "Burger",
+  },
+  {
+    img: "/images/img12.jpg",
+    title: "Camera",
+  },
+  {
+    img: "/images/img13.jpg",
+    title: "Coffee",
+  },
+  {
+    img: "/images/img14.jpg",
+    title: "Hats",
+  },
+  {
+    img: "/images/img15.jpg",
+    title: "Honey",
+  },
+  {
+    img: "/images/img16.jpg",
+    title: "Basketball",
+  },
+  {
+    img: "/images/img17.jpg",
+    title: "Fern",
+  },
+  {
+    img: "/images/img18.jpg",
+    title: "Mushrooms",
+  },
+  {
+    img: "/images/img9.jpg",
+    title: "Tomato basil",
+  },
 ];

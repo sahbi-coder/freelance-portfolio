@@ -3,51 +3,68 @@ import useMobile from "../hooks/useMobile";
 import { gsap } from "gsap";
 import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
-import { useAppContext } from "../context/state";
 import PhoneIcon from "@mui/icons-material/Phone";
-import emailjs from "@emailjs/browser";
+import axios from "axios";
+import uniqid from "uniqid";
+import Map from "./Map";
+import * as yup from "yup";
+import { useFormik } from "formik";
+
 gsap.registerPlugin(ScrollTrigger);
 
-function Contact() {
+function Contact({ t }) {
   const [done, setDone] = useState(false);
   const [error, setError] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
-  const sendEmail = (e) => {
-    e.preventDefault();
-    setIsFetching(true);
-    emailjs
-      .sendForm(
-        process.env.NEXT_PUBLIC_SERVICE_ID,
-        process.env.NEXT_PUBLIC_TEMPLATE_ID,
-        formRef.current,
-        process.env.NEXT_PUBLIC_PUBLIC_KEY
-      )
-      .then(
-        (result) => {
-          setDone(true);
-          setError(false);
-          setIsFetching(false);
-        },
-        (error) => {
-          console.log(
-            error,
-            process.env.NEXT_PUBLIC_SERVICE_ID,
-            process.env.NEXT_PUBLIC_TEMPLATE_ID,
-            process.env.NEXT_PUBLIC_PUBLIC_KEY
-          );
-          setDone(false);
-          setError(true);
-          setIsFetching(false);
-        }
-      );
-  };
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      lastName: "",
+      message: "",
+      email: "",
+    },
+    validationSchema: yup.object({
+      name: yup
+        .string(15, t("contact:name-error-message"))
+        .required(t("contact:required"))
+        .max(15, t("contact:name-error-message")),
+      lastName: yup
+        .string(20, t("contact:lastName-error-message"))
+        .required(t("contact:required"))
+        .max(20, t("contact:lastName-error-message")),
+      message: yup
+        .string(5000, t("contact:message-error-message"))
+        .required(t("contact:required"))
+        .max(5000, t("contact:message-error-message")),
+      email: yup
+        .string(30, t("contact:email-length"))
+        .email(t("contact:email-error-message"))
+        .required(t("contact:required")).max(30,t("contact:email-length")),
+    }),
+    onSubmit: async (values) => {
+      try {
+        setIsFetching(true);
+        setDone(false);
+        setError(false);
+        const { data } = await axios.post("/api/contact", values);
+        setDone(true);
+        setError(false);
+        setIsFetching(false);
+      } catch {
+        setError(true);
+        setDone(false);
+        setIsFetching(false);
+      }
+    },
+  });
+
   const isMobile = useMobile();
   const lettersRefs = useRef([]);
   const inputsRefs = useRef([]);
   const containerRef = useRef(null);
   const catchRef = useRef(null);
   const formRef = useRef(null);
-  const { state, dispatch, ACTIONS } = useAppContext();
+
   const setInputsRefs = (el, index) => {
     if (el) inputsRefs.current[index] = el;
   };
@@ -66,13 +83,14 @@ function Contact() {
     const t = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "40% center",
+        start: isMobile?'top center':"20% center" ,
+    
       },
     });
     const t1 = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "40% center",
+        start: isMobile?'top center':"20% center" ,
       },
     });
 
@@ -83,199 +101,146 @@ function Contact() {
       t.to(input, { y: 0, opacity: 1, duration: 0.5 });
     });
     t1.to(catchRef.current, { x: 0 });
-  }, [state]);
+  }, []);
   return (
     <div className={styles.container}>
       <div className={styles.left} ref={containerRef}>
-        <div className={styles.overlay}></div>
         <div className={styles.title}>
-          {state.language === ACTIONS.EN && (
-            <>
-              <span ref={setLettersRefs}>C</span>
-              <span ref={setLettersRefs}>o</span>
-              <span ref={setLettersRefs}>n</span>
-              <span ref={setLettersRefs}>t</span>
-              <span ref={setLettersRefs}>a</span>
-              <span ref={setLettersRefs}>c</span>
-              <span ref={setLettersRefs}>t</span>
-              <span ref={setLettersRefs}> </span>
-              <span ref={setLettersRefs}>m</span>
-              <span ref={setLettersRefs}>e</span>
-            </>
-          )}
-          {state.language === ACTIONS.FR && (
-            <>
-              <span ref={setLettersRefs}>C</span>
-              <span ref={setLettersRefs}>o</span>
-              <span ref={setLettersRefs}>n</span>
-              <span ref={setLettersRefs}>t</span>
-              <span ref={setLettersRefs}>a</span>
-              <span ref={setLettersRefs}>c</span>
-              <span ref={setLettersRefs}>t</span>
-              <span ref={setLettersRefs}>e</span>
-              <span ref={setLettersRefs}>z</span>
-              <span ref={setLettersRefs}> </span>
-              <span ref={setLettersRefs}>m</span>
-              <span ref={setLettersRefs}>o</span>
-              <span ref={setLettersRefs}>i</span>
-            </>
-          )}
+          {t("contact:contact")
+            .split("")
+            .map((c, index) => {
+              return (
+                <span ref={setLettersRefs} key={uniqid()}>
+                  {c}
+                </span>
+              );
+            })}
         </div>
         <div className={styles.phone}>
-          <PhoneIcon />:
-          <span style={{  marginLeft: 10,color:'#08fdd8' }}> 92 999 589</span>
+          <PhoneIcon />:<span style={{ marginLeft: 10 }}> +216 92 999 589</span>
         </div>
-        {state.language === ACTIONS.FR && (
-          <form className={styles.form} ref={formRef}>
-            <div className={styles.row}>
-              <div className={styles.column}>
-                <input
-                  className={styles.input}
-                  placeholder="prenom"
-                  ref={(el) => {
-                    setInputsRefs(el, 0);
-                  }}
-                  name="from_name"
-                />
-              </div>
-              <div className={styles.column}>
-                <input
-                  className={styles.input}
-                  placeholder="nom"
-                  ref={(el) => {
-                    setInputsRefs(el, 1);
-                  }}
-                  name="from_lastname"
-                />
-              </div>
-            </div>
-            <div className={styles.row}>
+
+        <form
+          className={styles.form}
+          ref={formRef}
+          onSubmit={formik.handleSubmit}
+          onChange={formik.handleChange}
+        >
+          <div className={styles.row}>
+            <div className={styles.column}>
               <input
                 className={styles.input}
-                placeholder="votre mail"
+                id="name"
+                type="text"
+                placeholder={t("contact:name_placeholder")}
+                name="name"
+                ref={(el) => {
+                  setInputsRefs(el, 0);
+                }}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.name}
+              />
+              {formik.touched.name && formik.errors.name ? (
+                <p className={styles.error}>{formik.errors.name}</p>
+              ) : null}
+            </div>
+            <div className={styles.column}>
+              <input
+                id="lastName"
+                type="text"
+                name="lastName"
+                className={styles.input}
+                placeholder={t("contact:lastname_placeholder")}
+                ref={(el) => {
+                  setInputsRefs(el, 1);
+                }}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.lastName}
+              />
+              {formik.touched.lastName && formik.errors.lastName ? (
+                <p className={styles.error}>{formik.errors.lastName}</p>
+              ) : null}
+            </div>
+          </div>
+          <div className={styles.row}>
+            <div className={styles.twoColumns}>
+              <input
+                className={styles.input}
+                placeholder={t("contact:email_placeholder")}
+                id="email"
                 type="email"
+                name="email"
                 ref={(el) => {
                   setInputsRefs(el, 2);
                 }}
-                name="from_email"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
               />
+              {formik.touched.email && formik.errors.email ? (
+                <p className={styles.error}>{formik.errors.email}</p>
+              ) : null}
             </div>
-            <div className={styles.row}>
+          </div>
+          <div className={styles.row}>
+            <div className={styles.twoColumns}>
               <textarea
+                id="message"
                 className={styles.input}
-                placeholder="message"
-                ref={(el) => {
-                  setInputsRefs(el, 3);
-                }}
-                name="message"
-              />
-            </div>
-            <button
-              className="submit"
-              onClick={sendEmail}
-              ref={(el) => {
-                setInputsRefs(el, 4);
-              }}
-              style={{ cursor: isFetching ? "not-allowed" : "pointer" }}
-            >
-              envoyer message !
-            </button>
-            <div style={{ padding: 10 }}>
-              {done && (
-                <span style={{ color: "#08fdd8", padding: 2 }}>merci..</span>
-              )}
-              {error && (
-                <span style={{ color: "red", padding: 2 }}>
-                  oops ! un problème est survenu, réessayez...
-                </span>
-              )}
-            </div>
-          </form>
-        )}
-        {state.language === ACTIONS.EN && (
-          <form className={styles.form} ref={formRef}>
-            <div className={styles.row}>
-              <div className={styles.column}>
-                <input
-                  className={styles.input}
-                  placeholder="name"
-                  name="from_name"
-                  ref={(el) => {
-                    setInputsRefs(el, 0);
-                  }}
-                />
-              </div>
-              <div className={styles.column}>
-                <input
-                  className={styles.input}
-                  placeholder="last name"
-                  name="from_lastname"
-                  ref={(el) => {
-                    setInputsRefs(el, 1);
-                  }}
-                />
-              </div>
-            </div>
-            <div className={styles.row}>
-              <input
-                className={styles.input}
-                placeholder="your email"
-                type="email"
-                name="from_email"
-                ref={(el) => {
-                  setInputsRefs(el, 2);
-                }}
-              />
-            </div>
-            <div className={styles.row}>
-              <textarea
-                className={styles.input}
-                placeholder="message"
+                placeholder={t("contact:message_placeholder")}
                 name="message"
                 ref={(el) => {
                   setInputsRefs(el, 3);
                 }}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.message}
               />
+              {formik.touched.message && formik.errors.message ? (
+                <p className={styles.error}>{formik.errors.message}</p>
+              ) : null}
             </div>
-            <button
-              className="submit"
-              onClick={sendEmail}
-              ref={(el) => {
-                setInputsRefs(el, 4);
-              }}
-              disabled={isFetching}
-              style={{ cursor: isFetching ? "not-allowed" : "pointer" }}
-            >
-              send message !
-            </button>
-            <div style={{ padding: 10 }}>
-              {done && (
-                <span style={{ color: "#08fdd8", padding: 2 }}>
-                  Thank you..
-                </span>
-              )}
-              {error && (
-                <span style={{ color: "red", padding: 2 }}>
-                  oops ! something went wrong...
-                </span>
-              )}
-            </div>
-          </form>
-        )}
+          </div>
+          <button
+            className="submit"
+            type="submit"
+            ref={(el) => {
+              setInputsRefs(el, 4);
+            }}
+            disabled={isFetching}
+            style={{ cursor: isFetching ? "not-allowed" : "pointer" }}
+          >
+            {t("canvas:send")}
+          </button>
+          <div style={{ padding: 10 }}>
+            {done && (
+              <span style={{ color: "#08fdd8", padding: 2 }}>
+                {t("contact:success-message")}
+              </span>
+            )}
+            {error && (
+              <span style={{ color: "red", padding: 2 }}>
+                {t("contact:failure-message")}
+              </span>
+            )}
+          </div>
+        </form>
       </div>
       <div className={styles.right}>
-        <img
+        <Map />
+        {/* <img
           src={isMobile ? "wave-haikei3.svg" : "wave-haikei.svg"}
           loading="lazy"
           className={styles.curves}
-        />
+          alt={t('contact:photo-alt')}
+          />
 
         <div className={styles.catch} ref={catchRef}>
-          {state.language === ACTIONS.EN &&
-            "Always ready for your projects, feel free to contact me, now."}
-          {state.language === ACTIONS.FR &&
-            "Toujours prêt pour vos projets, n'hésitez pas à me contacter."}
-        </div>
+          {t('contact:catch')}
+        
+        </div> */}
       </div>
     </div>
   );

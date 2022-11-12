@@ -1,25 +1,35 @@
 import "../styles/globals.css";
 import { useState } from "react";
 import Router from "next/router";
-import Loader from "../components/Loader";
+import Loader from "../pages/loader";
 import AppRapper from "../context/state";
+import { appWithTranslation} from "next-i18next";
 
 
 function MyApp({ Component, pageProps }) {
- 
-  const [isLoading, setIsLoading] = useState(false);
+  
 
+  
+  const [isLoading, setIsLoading] = useState(false);
+  const [timeOut, setTime] = useState(false);
+  
   Router.events.on("routeChangeStart", (url) => {
+ 
     setIsLoading(true);
   });
   Router.events.on("routeChangeComplete", (url) => {
-    setIsLoading(false);
+    setTime(true)
+    setTimeout(() => {
+      setTime(timeOut=>false);
+    }, 3000);
+    setIsLoading(false)
   });
+
   return (
     <AppRapper>
-      {isLoading ? <Loader /> : <Component {...pageProps} />}
+      {(isLoading||timeOut )? <Loader {...pageProps}/> : <Component {...pageProps} />}
     </AppRapper>
   );
 }
 
-export default MyApp;
+export default appWithTranslation(MyApp);
