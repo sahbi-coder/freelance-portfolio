@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import uploadFile from "../functions/uploadTofirebase.js";
-import downloadImages from "../functions/downloadImagesFromFirebase.js";
-import deleteFromFirebase from "../functions/deleteFromFirebase.js";
+import uploadFile from "../functions/uploadTofirebase";
+import downloadImages from "../functions/downloadImagesFromFirebase";
+import deleteFromFirebase from "../functions/deleteFromFirebase";
 import Router from "next/router";
 import styles from "../styles/Admin.module.css";
 import Image from "next/image";
-import { deleteAllImage } from "../functions/deleteFromFirebase.js";
+import { deleteAllImage } from "../functions/deleteFromFirebase";
 import { TailSpin } from "react-loader-spinner";
 
 function Admin({ authenticated }) {

@@ -1,6 +1,6 @@
 import styles from "../styles/Galery.module.css";
 import axios from "axios";
-import downloadImages from "../functions/cloudeFuctions/downloadImagesFromFirebase";
+import downloadImages from "../functions/downloadImagesFromFirebase";
 import Image from "next/image";
 import Modal from "../components/Modal";
 import { useRef } from "react";

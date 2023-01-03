@@ -8,7 +8,7 @@ import Work from "../components/Work";
 import Contact from "../components/Contact";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import downloadImages from "../functions/cloudeFuctions/downloadImagesFromFirebase";
+import downloadImages from "../functions/downloadImagesFromFirebase";
 import axios from "axios";
 
 export async function getStaticProps({locale}){
