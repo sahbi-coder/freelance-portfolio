@@ -1,6 +1,5 @@
 import Head from "next/head";
 import Layout from "../components/Layout";
-
 import Canvas from "../components/Canvas";
 import Services from "../components/Services";
 import About from "../components/About";

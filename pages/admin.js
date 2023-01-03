@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import uploadFile from "../functions/uploadTofirebase";
+import uploadFile from "../functions/uploadToFirebase";
 import downloadImages from "../functions/downloadImagesFromFirebase";
 import deleteFromFirebase from "../functions/deleteFromFirebase";
 import Router from "next/router";
