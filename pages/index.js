@@ -10,7 +10,7 @@ import { useTranslation } from "next-i18next";
 import downloadImages from "../functions/downloadImagesFromFirebase";
 import axios from "axios";
 
-export async function getStaticProps({locale}){
+export async function getServerSideProps({locale}){
   async function getImages() {
     try {
       let res = [];

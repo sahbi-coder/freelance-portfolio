@@ -1,5 +1,4 @@
-
-  import { serialize } from "cookie";
+import { serialize } from "cookie";
   
   export default async function handler(req, res) {
     try {

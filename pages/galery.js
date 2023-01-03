@@ -46,7 +46,7 @@ export default function Galery({ images }) {
   );
 }
 
-export async function getStaticProps({locale}) {
+export async function getServerSideProps({locale}) {
   async function getImages() {
     try {
       let res = [];
