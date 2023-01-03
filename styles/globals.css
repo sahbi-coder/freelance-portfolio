@@ -1,33 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   overflow-x: hidden;
   background-color: #1c1c1c;
   z-index: -1;
-  height:auto;
+  height: auto;
   width: 100%;
-  
- 
-
 }
-
-
 
 ::placeholder {
   color: #aaaab3;
-  opacity: 1; 
+  opacity: 1;
 }
 
-:-ms-input-placeholder { 
- color: whitesmoke;
+:-ms-input-placeholder {
+  color: whitesmoke;
 }
 
-
-.submit{
+.submit {
   width: 50%;
   cursor: pointer;
   height: 35px;
@@ -35,32 +29,22 @@ body {
   color: #08fdd8;
   border: 1px solid #08fdd8;
   position: relative;
- 
 }
 
-.submit:hover{
-   background-color: #08fdd8;
-  color:white;
+.submit:hover {
+  background-color: #08fdd8;
+  color: white;
 }
 a {
   color: inherit;
   text-decoration: none;
 }
 
-ul{
+ul {
   list-style-type: none;
-
 }
-
-
 
 * {
   box-sizing: border-box;
   padding: 0;
- 
 }
-
-
-
-
-

@@ -1,8 +1,8 @@
-import { useState, useLayoutEffect } from "react";
+import { useState, useEffect } from "react";
 
 function useMobile() {
   const [isMobile, setIsMobile] = useState(null);
-  useLayoutEffect(() => {
+  useEffect(() => {
     const maches = window.matchMedia("(max-width: 768px)").matches;
     setIsMobile(maches);
     let req = window.addEventListener("resize", function () {

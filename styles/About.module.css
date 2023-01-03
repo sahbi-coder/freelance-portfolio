@@ -15,7 +15,6 @@
   padding: 40px;
   color: white;
   font-size: 1.4rem;
- 
 }
 .title {
   font-size: 3rem;
@@ -31,7 +30,6 @@
   border: none;
   padding: 10px;
   font-weight: bold;
-
 }
 .right {
   width: 50%;
@@ -44,19 +42,17 @@
   width: 100%;
   bottom: 0;
   background: #08fdd8;
-  opacity: .3;
- 
+  opacity: 0.3;
 }
-.curves{
+.curves {
   position: absolute;
   height: 100vh;
 
   top: 0;
   left: -10%;
-  
 }
-.block{
-  word-wrap:break-word;
+.block {
+  word-wrap: break-word;
   padding-right: 20px;
 }
 

@@ -6,7 +6,7 @@
   width: 100vw;
   top: 0;
   left: 0;
-  opacity: 0.85;
+  opacity: 0.95;
   background-color: #1c1d1c;
   display: flex;
   align-items: center;
@@ -22,11 +22,17 @@
   align-items: center;
   height: 80%;
   width: 60%;
+
 }
 .modalImg {
   width: 90%;
   height: 90%;
   object-fit: cover;
+
+}
+.modalNavButton{
+    border-radius: 50px;
+    opacity: 0.5;
 }
 .modalButton {
   margin-top: 20px;
@@ -38,8 +44,8 @@
   font-size: 1.7rem;
   cursor: pointer;
 }
-@media screen and (max-width:768px) {
-  .modalBody{
+@media screen and (max-width: 768px) {
+  .modalBody {
     height: 60% !important;
   }
 }

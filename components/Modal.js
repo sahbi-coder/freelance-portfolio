@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, forwardRef, useImperativeHandle, useEffect } from "react";
+import { useState, forwardRef, useImperativeHandle } from "react";
 import styles from "../styles/Modal.module.css";
 
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -9,16 +9,16 @@ function Modal(props, ref) {
   const [imgSrc, setImgSrc] = useState("");
 
   const [currentIndex, setCurrentIndex] = useState(0);
- 
+
   const getNextImage = () => {
     if (currentIndex < props.scrambledImages.length - 1) {
-      setImgSrc(props.scrambledImages[currentIndex + 1].img);
+      setImgSrc(props.scrambledImages[currentIndex + 1].src);
       setCurrentIndex(currentIndex + 1);
     }
   };
   const getBeforeImage = () => {
     if (currentIndex > 0) {
-      setImgSrc(props.scrambledImages[currentIndex - 1].img);
+      setImgSrc(props.scrambledImages[currentIndex - 1].src);
       setCurrentIndex(currentIndex - 1);
     }
   };
@@ -27,19 +27,34 @@ function Modal(props, ref) {
       setIsOpen(true);
       setImgSrc(img);
       props.scrambledImages.forEach((item, index) => {
-        if (img === item.img) {
+        if (img === item.src) {
           setCurrentIndex(index);
-         
         }
       });
     },
   }));
-  return isOpen ? (
+  return isOpen && imgSrc ? (
     <div className={styles.modal}>
       <div className={styles.modalBody}>
-        <NavigateBefore style={{ cursor: "pointer" }} onClick={getBeforeImage}/>
+        <button className={styles.modalNavButton}>
+          <NavigateBefore
+            style={{
+              cursor: currentIndex === 0 ? "not-allowed" : "pointer",
+              color: currentIndex === 0 ? "red" : "black",
+            }}
+            onClick={getBeforeImage}
+          />
+        </button>
         <img src={imgSrc} className={styles.modalImg} />
-        <NavigateNextIcon style={{ cursor: "pointer" }} onClick={getNextImage}/>
+        <button className={styles.modalNavButton}>
+          <NavigateNextIcon
+            style={{
+              cursor: currentIndex === (props.scrambledImages.length-1) ? "not-allowed" : "pointer",
+              color: currentIndex === (props.scrambledImages.length-1) ? "red" : "black",
+            }}
+            onClick={getNextImage}
+          />
+        </button>
       </div>
 
       <button
@@ -48,8 +63,7 @@ function Modal(props, ref) {
         }}
         className={styles.modalButton}
       >
-        {props.t('modal:close')}
-      
+        {props.t("modal:close")}
       </button>
     </div>
   ) : null;

@@ -19,7 +19,7 @@ function Aboutt() {
   return (
     <>
       <Head>
-        <title>Oussama Jedda</title>
+      
         <meta name="description" content="Oussama jedda | Website" />
         <link rel="icon" href="/icon.svg" />
         <title>oussama jedda | about</title>

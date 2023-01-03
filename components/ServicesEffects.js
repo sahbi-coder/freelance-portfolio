@@ -65,7 +65,7 @@ function ServicesEffects() {
             renderer.render(scene, camera);
             req = requestAnimationFrame(loop);
           } catch (e) {
-            console.log(e);
+          
           }
         }
         loop();
@@ -126,7 +126,7 @@ function ServicesEffects() {
             renderer.render(scene, camera);
             loopReq = requestAnimationFrame(loop);
           } catch (e) {
-            console.log(e);
+       
           }
         }
         loop();

@@ -9,6 +9,7 @@ import uniqid from "uniqid";
 import Map from "./Map";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { useRouter } from "next/router";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,7 @@ function Contact({ t }) {
   const [done, setDone] = useState(false);
   const [error, setError] = useState(false);
   const [isFetching, setIsFetching] = useState(false);
+  const router = useRouter()
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -103,7 +105,7 @@ function Contact({ t }) {
     t1.to(catchRef.current, { x: 0 });
   }, []);
   return (
-    <div className={styles.container}>
+    <div className={styles.container} style={{marginTop:router.pathname==='/'?10:0}}>
       <div className={styles.left} ref={containerRef}>
         <div className={styles.title}>
           {t("contact:contact")
@@ -230,17 +232,7 @@ function Contact({ t }) {
       </div>
       <div className={styles.right}>
         <Map />
-        {/* <img
-          src={isMobile ? "wave-haikei3.svg" : "wave-haikei.svg"}
-          loading="lazy"
-          className={styles.curves}
-          alt={t('contact:photo-alt')}
-          />
-
-        <div className={styles.catch} ref={catchRef}>
-          {t('contact:catch')}
-        
-        </div> */}
+    
       </div>
     </div>
   );

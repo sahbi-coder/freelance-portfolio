@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 export default function handler(req, res) {
+  if(req.method!=='POST') res.status(405).json({message:'sorry this route only accepts post requests'})
   const contact = req.body;
   const output = `   
      <p>you have new contact</p>

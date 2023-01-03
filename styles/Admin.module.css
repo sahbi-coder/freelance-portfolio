@@ -1,0 +1,46 @@
+.title {
+  text-align: center;
+  color: #08fdd8;
+  padding: 10px;
+  font-size: 2rem;
+}
+.dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+.container {
+  width: 70%;
+  flex-direction: column;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  width: 100%;
+  padding: 10px;
+}
+.gridItem {
+  position: relative;
+  height: 250px;
+  cursor: pointer;
+}
+.tools {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+  background-color: rgb(177, 177, 177);
+  padding: 15px;
+  border-radius: 5px;
+}
+.button{
+    background-color: #1c1c1c;
+    color: #08fdd8;
+    padding: 5px;
+    cursor: pointer;
+    margin:0 5px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}

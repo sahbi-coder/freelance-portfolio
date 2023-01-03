@@ -3,8 +3,6 @@
   width: 100%;
   align-items: center;
   height: 100vh;
-
-
 }
 
 .left {
@@ -45,7 +43,7 @@
 
 .form {
   display: flex;
-  padding:10px;
+  padding: 10px;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -79,9 +77,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-bottom:5px;
+  margin-bottom: 5px;
 }
-
 
 .curves {
   position: absolute;
@@ -97,8 +94,8 @@
   font-size: 1rem;
   color: #08fdd8;
 }
-.error{
-  color:red;
+.error {
+  color: red;
   padding: 0;
   margin: 0;
   font-size: 14px;
@@ -106,7 +103,7 @@
 @media screen and (max-width: 768px) {
   .container {
     display: flex;
-    flex-direction:column !important;
+    flex-direction: column !important;
     height: auto;
   }
   .left {
@@ -121,13 +118,12 @@
     background-position: center;
     position: relative;
   }
-  .title{
+  .title {
     font-size: 2rem;
   }
   .right {
     width: 100% !important;
     height: 90vh !important;
-    
   }
   .form {
     width: 70vw;
@@ -135,7 +131,6 @@
   .row {
     flex-direction: column !important;
     align-items: flex-start;
-    
   }
   .column {
     width: 100%;
@@ -152,10 +147,7 @@
   }
 }
 @media screen and (max-width: 375px) {
-
-  .title{
+  .title {
     font-size: 1.5rem;
-
-    
   }
-  }
+}

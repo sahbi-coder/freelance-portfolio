@@ -1,14 +1,12 @@
-.gridsContainer{
+.gridsContainer {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
 }
-.grid{
- 
-
+.grid {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   width: 100%;
   height: 90% !important;
@@ -40,21 +38,15 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 50vh);
- 
   }
 }
-.gridItem{
-
-
+.gridItem {
   position: relative;
   overflow: hidden;
   color: #000;
- 
 }
 
-
-
-.gridItemButton{
+.gridItemButton {
   color: #08fdd8;
   background-color: #1c1c1c;
   position: absolute;
@@ -62,37 +54,25 @@
   height: 100px;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
-  padding: 30px ;
+  transform: translate(-50%, -50%);
+  padding: 30px;
   border-radius: 50%;
   cursor: pointer;
   border: none;
   outline: none;
   font-weight: bold;
-  
-
 }
-.gridItemButtonWrapper{
+.gridItemButtonWrapper {
   position: absolute;
   height: 100%;
   width: 100%;
   opacity: 0;
 }
-.gridItemButtonWrapper:hover{
- opacity: 1;
+.gridItemButtonWrapper:hover {
+  opacity: 1;
 }
-@media only screen and (max-width:768px){
-  .gridItemButtonWrapper{
+@media only screen and (max-width: 768px) {
+  .gridItemButtonWrapper {
     opacity: 1;
   }
 }
-
-
-
-
-
-
-
-
-
-
