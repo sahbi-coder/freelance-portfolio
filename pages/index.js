@@ -7,9 +7,7 @@ import Work from "../components/Work";
 import Contact from "../components/Contact";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import downloadImages from "../functions/downloadImagesFromFirebase";
-import axios from "axios";
-import { useEffect, useState } from "react";
+
 
 
 export async function getStaticProps({ locale }) {
@@ -28,27 +26,20 @@ export async function getStaticProps({ locale }) {
   };
 }
 
+const images=[
+  {id:1,src:'images/img1.jpg'},
+  {id:2,src:'images/img2.jpg'},
+  {id:3,src:'images/img3.jpg'},
+  {id:4,src:'images/img4.jpg'},
+  {id:5,src:'images/img5.jpg'},
+  {id:6,src:'images/img6.jpg'},
+  {id:7,src:'images/img7.jpg'},
+  {id:8,src:'images/img8.jpg'},
+
+]
 export default function Home() {
   const { t } = useTranslation();
-  const [images, setImages] = useState([]);
-  useEffect(() => {
-    (async function getImages() {
-      let res = [];
-      try {
-        let result = (
-          await axios.get(process.env.NEXT_PUBLIC_BASE_URL + "/api/images")
-        ).data;
-        for (let i = 0; i < result.length; i++) {
-          let src = await downloadImages(result[i].img);
-          let image = { id: result[i].id, src };
-          res.push(image);
-        }
-      } catch {
-        res = [];
-      }
-      setImages(res);
-    })();
-  }, []);
+
   return (
     <>
       <Head>
@@ -71,3 +62,4 @@ export default function Home() {
     </>
   );
 }
+
