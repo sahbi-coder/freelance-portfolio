@@ -33,8 +33,8 @@ export default function Home() {
   const [images, setImages] = useState([]);
   useEffect(() => {
     (async function getImages() {
+      let res = [];
       try {
-        let res = [];
         let result = (
           await axios.get(process.env.NEXT_PUBLIC_BASE_URL + "/api/images")
         ).data;
