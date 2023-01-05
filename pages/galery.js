@@ -12,10 +12,19 @@ import Head from "next/head";
 export default function Galery() {
   const modalRef = useRef(null);
   const [images, setImages] = useState([]);
+
   const openModal = (img) => {
     modalRef.current.openModal(img);
   };
   const { t } = useTranslation();
+  function generatePlaceHolders(number) {
+    let result = [];
+    for (let i = 0; i < number; i++) {
+      result.push("placeholder");
+    }
+    return result;
+  }
+ 
   useEffect(() => {
     (async function getImages() {
       let res = [];
@@ -43,10 +52,19 @@ export default function Galery() {
       </Head>
       <Layout t={t}>
         <Modal ref={modalRef} scrambledImages={images} t={t} />
-        <div className={styles.grid}>
+        <div className={styles.grid} >
+          {!images.length &&
+            generatePlaceHolders(18).map((item, index) => {
+              return (
+                <div className={styles.gridItem} key={index}>
+                  <div className={styles.placeHolder}></div>
+                </div>
+              );
+            })}
           {images.map((item, index) => {
             return (
               <div className={styles.gridItem} key={item.id}>
+                <div className={styles.placeHolder}></div>
                 <Image
                   src={item.src}
                   layout="fill"

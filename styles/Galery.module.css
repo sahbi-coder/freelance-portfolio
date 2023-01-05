@@ -10,11 +10,25 @@
   position: relative;
   height: 250px;
   cursor: pointer;
-  
+
 }
-.gridItem:hover{
-     transform: scale(1.1);
-     opacity: 0.5;
-     transform: translate(5%,5%);
-     z-index: 500;
+.gridItem:hover {
+  transform: scale(1.05);
+  opacity: 0.5;
+  z-index: 500;
+}
+.placeHolder{
+  height: 250px;
+  opacity: 0.7;
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 70%);
+  }
+
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
 }
