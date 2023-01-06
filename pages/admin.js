@@ -113,79 +113,86 @@ function Admin({ authenticated }) {
     }
   }
   return (
-    <div>
-      <div className={styles.title}>Hello Oussama</div>
-      <div className={styles.dashboard}>
-        <div className={styles.tools}>
-          <div>
-            <button
-              onClick={() => {
-                addImage();
-              }}
-              className={styles.button}
-            >
-              add
-            </button>
-          </div>
+    <>
+      <Head>
+        <meta name="description" content="Oussama jedda | Website" />
+        <link rel="icon" href="/icon.svg" />
+        <title>oussama jedda | galery</title>
+      </Head>
+      <div>
+        <div className={styles.title}>Hello Oussama</div>
+        <div className={styles.dashboard}>
+          <div className={styles.tools}>
+            <div>
+              <button
+                onClick={() => {
+                  addImage();
+                }}
+                className={styles.button}
+              >
+                add
+              </button>
+            </div>
 
-          <div>
-            <button
-              onClick={() => {
-                deleteAllImagesAlert();
-              }}
-              className={styles.button}
-            >
-              delete all
-            </button>
+            <div>
+              <button
+                onClick={() => {
+                  deleteAllImagesAlert();
+                }}
+                className={styles.button}
+              >
+                delete all
+              </button>
+            </div>
+            <div>
+              <input
+                type="file"
+                onChange={(e) => setImageToAppload(e.target.files[0])}
+              />
+            </div>
+            <div>
+              <button
+                onClick={() => {
+                  logout();
+                }}
+                className={styles.button}
+              >
+                logout
+              </button>
+            </div>
           </div>
-          <div>
-            <input
-              type="file"
-              onChange={(e) => setImageToAppload(e.target.files[0])}
+          {isFetching && (
+            <TailSpin
+              height="80"
+              width="80"
+              color="#08fdd8"
+              ariaLabel="tail-spin-loading"
+              radius="1"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
             />
-          </div>
-          <div>
-            <button
-              onClick={() => {
-                logout();
-              }}
-              className={styles.button}
-            >
-              logout
-            </button>
-          </div>
-        </div>
-        {isFetching && (
-          <TailSpin
-            height="80"
-            width="80"
-            color="#08fdd8"
-            ariaLabel="tail-spin-loading"
-            radius="1"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-          />
-        )}
-        <div className={styles.container}>
-          <div className={styles.grid}>
-            {images.map((item, index) => {
-              return (
-                <div
-                  key={100 + index}
-                  className={styles.gridItem}
-                  onClick={() => {
-                    deleteImageAlert(item.id);
-                  }}
-                >
-                  <Image src={item.src} layout="fill" objectFit="cover" />
-                </div>
-              );
-            })}
+          )}
+          <div className={styles.container}>
+            <div className={styles.grid}>
+              {images.map((item, index) => {
+                return (
+                  <div
+                    key={100 + index}
+                    className={styles.gridItem}
+                    onClick={() => {
+                      deleteImageAlert(item.id);
+                    }}
+                  >
+                    <Image src={item.src} layout="fill" objectFit="cover" />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

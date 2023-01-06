@@ -30,7 +30,7 @@ export default function Galery() {
       let res = [];
       try {
         let result = (
-          await axios.get(process.env.NEXT_PUBLIC_BASE_URL + "/api/images")
+          await axios.get("/api/images")
         ).data;
         for (let i = 0; i < result.length; i++) {
           let src = await downloadImages(result[i].img);
