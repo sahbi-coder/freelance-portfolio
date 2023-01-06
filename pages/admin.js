@@ -8,6 +8,7 @@ import styles from "../styles/Admin.module.css";
 import Image from "next/image";
 import { deleteAllImage } from "../functions/deleteFromFirebase";
 import { TailSpin } from "react-loader-spinner";
+import Head from "next/head";
 
 function Admin({ authenticated }) {
   const [imageToAppload, setImageToAppload] = useState(null);
